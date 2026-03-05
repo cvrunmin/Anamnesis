@@ -29,6 +29,7 @@ public class GameDataService : ServiceBase<GameDataService>
 		Global,
 		Korean,
 		Chinese,
+		TraditionalChinese,
 	}
 
 	public static ClientRegion Region { get; private set; }
@@ -160,6 +161,11 @@ public class GameDataService : ServiceBase<GameDataService>
 		{
 			Region = ClientRegion.Korean;
 			defaultLuminaLaunguage = Language.Korean;
+		}
+		else if (File.Exists(Path.Combine(MemoryService.GamePath, "boot", "FfxivLauncherTC.exe")))
+		{
+			Region = ClientRegion.TraditionalChinese;
+			defaultLuminaLaunguage = Language.ChineseTraditional2;
 		}
 
 		Log.Information($"Found game client region: {Region}");
